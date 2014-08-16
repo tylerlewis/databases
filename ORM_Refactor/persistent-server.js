@@ -4,14 +4,12 @@
 
 var http = require("http");
 var url = require('url');
-var sequelize = require('./orm-example');
+
 var handlers = require('./request-handler');
 var serverHelpers = require('./server-helpers');
 
 var port = 3000;
 var ip = "127.0.0.1";
-
-sequelize.auth();
 
 var router = function(req, res) {
 
