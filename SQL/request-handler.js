@@ -13,9 +13,10 @@ exports.postMessage = function(req, res) {
   var message;
 
   var resultsCallback = function (results) {
+    console.log("ASSHOLE OF A MESSAGE: ", message);
       var chat = {
-        message: message.message,
-        userid: results[0].id,
+        message: message.txt  ,
+        userid: results[0].userId,
         roomname: message.roomname
       };
 

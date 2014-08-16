@@ -27,22 +27,24 @@ exports.findAllMessages = function(cb){
     if(err) {
       throw err;
     }
-    cb(messages);
+    cb(err, messages);
   });
 };
 
 exports.findUser = function(username, cb){
-  var queryString = 'SELECT * FROM users WHERE username = ' + username + ';';
+  var queryString = 'SELECT * FROM users WHERE username = ' + JSON.stringify(username) + ';';
+  console.log("FIND USER");
   dbConnection.query(queryString, function(err, user) {
     if(err) {
       throw err;
     }
-    cb(user);
+    cb(err, user);
   });
 };
 
 exports.saveUser = function(username, cb){
-  var queryString = 'INSERT INTO users (username) values(' + username + ');';
+  var queryString = 'INSERT INTO users (username) values(' + JSON.stringify(username) + ');';
+  console.log("SAVE USER");
   dbConnection.query(queryString, function(err, user) {
     if(err) {
       throw err;
@@ -52,7 +54,8 @@ exports.saveUser = function(username, cb){
 };
 
 exports.saveMessage = function(message, userid, roomname, cb){
-  var queryString = 'INSERT INTO messages (userId, txt, roomname) values(' + userid + ', ' + message + ', ' + roomname + ');';
+  var queryString = 'INSERT INTO messages (userId, txt, roomname) values(' + JSON.stringify(userid) + ', ' + JSON.stringify(message) + ', ' + JSON.stringify(roomname) + ');';
+  console.log("ASSHOLE STRING: ", queryString);
   dbConnection.query(queryString, function(err, message) {
     if(err) {
       throw err;
